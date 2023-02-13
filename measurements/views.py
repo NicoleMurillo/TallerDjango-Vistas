@@ -1,10 +1,9 @@
-from django.shortcuts import render
-
 from .logic import measurements_logic as ml
 from django.http import HttpResponse
 from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
+
 
 @csrf_exempt
 def measurements_view(request):
@@ -35,7 +34,7 @@ def measurement_view(request, pk):
         measurement_dto = ml.update_measurement(pk, json.loads(request.body))
         measurement = serializers.serialize('json', [measurement_dto,])
         return HttpResponse(measurement, 'application/json')
-    
+
     if request.method == 'DELETE':
         measurement_dto = ml.delete_measurement(pk)
         measurement = serializers.serialize('json', [measurement_dto,])
