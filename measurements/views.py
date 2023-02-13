@@ -39,3 +39,4 @@ def measurement_view(request, pk):
         measurement_dto = ml.delete_measurement(pk)
         measurement = serializers.serialize('json', [measurement_dto,])
         return HttpResponse(measurement, 'application/json')
+    
